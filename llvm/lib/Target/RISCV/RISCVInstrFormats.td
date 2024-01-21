@@ -363,6 +363,53 @@ class RVInstR4Frm<bits<2> funct2, RISCVOpcode opcode, dag outs, dag ins,
   let Inst{6-0} = opcode.Value;
 }
 
+class RVInstRS2<bits<7> funct7, bits<3> funct3, RISCVOpcode opcode, dag outs,
+               dag ins, string opcodestr, string argstr>
+    : RVInst<outs, ins, opcodestr, argstr, [], InstFormatOther> {
+  bits<5> rs2;
+  bits<5> rs1;
+  let Inst{31-25} = funct7;
+  let Inst{24-20} = rs2;
+  let Inst{19-15} = rs1;
+  let Inst{14-12} = funct3;
+  let Inst{11-7} = 0;
+  let Inst{6-0} = opcode.Value;
+}
+
+class RVInstRS3<bits<2> funct2, bits<3> funct3, RISCVOpcode opcode, dag outs,
+               dag ins, string opcodestr, string argstr>
+    : RVInst<outs, ins, opcodestr, argstr, [], InstFormatOther> {
+  // bits<5> reserve;
+  bits<5> rs3;
+  bits<5> rs2;
+  bits<5> rs1;
+
+  let Inst{31-27} = rs3;
+  let Inst{26-25} = funct2;
+  let Inst{24-20} = rs2;
+  let Inst{19-15} = rs1;
+  let Inst{14-12} = funct3;
+  let Inst{11-7} = 0;
+  let Inst{6-0} = opcode.Value;
+}
+
+class RVInstRS4<bits<2> funct2, bits<3> funct3, RISCVOpcode opcode, dag outs,
+               dag ins, string opcodestr, string argstr>
+    : RVInst<outs, ins, opcodestr, argstr, [], InstFormatR> {
+  bits<5> rs4;
+  bits<5> rs3;
+  bits<5> rs2;
+  bits<5> rs1;
+
+  let Inst{31-27} = rs3;
+  let Inst{26-25} = funct2;
+  let Inst{24-20} = rs2;
+  let Inst{19-15} = rs1;
+  let Inst{14-12} = funct3;
+  let Inst{11-7} = rs4;
+  let Inst{6-0} = opcode.Value;
+}
+
 // Common base class for I format instructions. Bits {31-20} should be set by
 // the subclasses.
 class RVInstIBase<bits<3> funct3, RISCVOpcode opcode, dag outs, dag ins,

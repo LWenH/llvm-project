@@ -2156,3 +2156,21 @@ include "RISCVInstrInfoXCV.td"
 //===----------------------------------------------------------------------===//
 
 include "RISCVInstrGISel.td"
+
+//===----------------------------------------------------------------------===//
+// custom cnn instructions
+//===----------------------------------------------------------------------===//
+let hasSideEffects = 1, mayLoad = 1, mayStore = 1 in {
+def KLOAD : RVInstRS3<0b00, 0b000, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3), "kload", "(${rs1}), $rs2, $rs3">, Sched<[]>;
+def FLOAD : RVInstRS3<0b01, 0b000, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3), "fload", "(${rs1}), $rs2, $rs3">, Sched<[]>;
+def FLOADP0FW : RVInstRS4<0b10, 0b000, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3, GPR:$rs4), "floadp0fw", "(${rs1}), $rs2, $rs3, $rs4">, Sched<[]>;
+def FLOADP0BW : RVInstRS4<0b11, 0b000, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3, GPR:$rs4), "floadp0bw", "(${rs1}), $rs2, $rs3, $rs4">, Sched<[]>;
+def FLOADP0BI : RVInstRS4<0b01, 0b010, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3, GPR:$rs4), "floadp0bi", "(${rs1}), $rs2, $rs3, $rs4">, Sched<[]>;
+def CONV : RVInstR<0b0000000, 0b001, OPC_CUSTOM_0, (outs GPR:$rd), (ins GPR:$rs1, GPR:$rs2), "conv", "$rd, $rs1, $rs2">, Sched<[]>;
+def MVTILE : RVInstRS3<0b10, 0b010, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3), "mvtile", "$rs1, $rs2, $rs3">, Sched<[]>;
+def SETHWTL : RVInstRS3<0b00, 0b010, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3), "sethwtl", "$rs1, $rs2, $rs3">, Sched<[]>;
+def FFILL0 : RVInstRS2<0b0000001, 0b001, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2), "ffill0", "$rs1, $rs2">, Sched<[]>;
+def OFILL0 : RVInstRS2<0b0000010, 0b001, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2), "ofill0", "$rs1, $rs2">, Sched<[]>;
+def OSTORE : RVInstRS3<0b00, 0b011, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3), "ostore", "(${rs1}), $rs2, $rs3">, Sched<[]>;
+def CONV2BUF : RVInstRS3<0b01, 0b011, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3), "conv2buf", "$rs1, $rs2, $rs3">, Sched<[]>;
+}
