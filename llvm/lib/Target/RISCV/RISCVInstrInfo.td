@@ -2173,4 +2173,5 @@ def FFILL0 : RVInstRS2<0b0000001, 0b001, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GP
 def OFILL0 : RVInstRS2<0b0000010, 0b001, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2), "ofill0", "$rs1, $rs2">, Sched<[]>;
 def OSTORE : RVInstRS3<0b00, 0b011, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3), "ostore", "(${rs1}), $rs2, $rs3">, Sched<[]>;
 def CONV2BUF : RVInstRS3<0b01, 0b011, OPC_CUSTOM_0, (outs), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3), "conv2buf", "$rs1, $rs2, $rs3">, Sched<[]>;
+def GCONV : RVInstR4<0b00, 0b100, OPC_CUSTOM_0, (outs GPR:$rd), (ins GPR:$rs1, GPR:$rs2, GPR:$rs3), "gconv", "$rd, $rs1, $rs2, $rs3">, Sched<[]>;
 }
